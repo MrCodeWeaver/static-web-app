@@ -4,6 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { Providers } from '@microsoft/mgt-element';
+import { Msal2Provider } from '@microsoft/mgt-msal2-provider';
+
+Providers.globalProvider = new Msal2Provider({
+
+  clientId: '9d9a4157-b4c5-459e-9d70-f99767464867' 
+
+});
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
