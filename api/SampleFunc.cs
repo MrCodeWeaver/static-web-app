@@ -27,7 +27,7 @@ namespace api
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req)
         {
             _logger.LogInformation("C# HTTP trigger function processed a request.");
-            _logger.LogInformation(_configuration["AzureAd:ClientId"]);
+            _logger.LogInformation(_configuration["AzureAd"]);
 
             var (authenticationStatus, authenticationResponse) =
                 await req.HttpContext.AuthenticateAzureFunctionAsync();
