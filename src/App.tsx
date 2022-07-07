@@ -52,7 +52,7 @@ function App() {
         };
 
         try {
-          fetch('http://localhost:7071/api/SampleFunc', options)
+          fetch('/api/SampleFunc', options)
           .then((response) => {
             console.log(response);
               response.json()
