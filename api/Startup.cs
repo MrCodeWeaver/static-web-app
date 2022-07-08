@@ -16,12 +16,9 @@ namespace static_web_app
 
     public class Startup : FunctionsStartup
     {
-        private readonly ILogger<Startup> _logger;
 
-        public Startup( ILogger<Startup> logger)
+        public Startup()
         {
-            _logger = logger;
-
         }
 
         IConfiguration Configuration { get; set; }
@@ -44,6 +41,9 @@ namespace static_web_app
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .Build();
             
+            var _logger = builder.Services.BuildServiceProvider().GetService<ILogger>();
+
+
             _logger.LogInformation("Startup Configure");
             _logger.LogInformation(Configuration.ToString());
 
@@ -60,8 +60,6 @@ namespace static_web_app
         private void ConfigureServices(IServiceCollection services)
         {
 
-            _logger.LogInformation("Startup ConfigureServices");
-          //  _logger.LogInformation(_configuration["AzureAd"]);
             //services.AddAuthentication(sharedOptions =>
             //{
             //    sharedOptions.DefaultScheme = Microsoft.Identity.Web.Constants.Bearer;
