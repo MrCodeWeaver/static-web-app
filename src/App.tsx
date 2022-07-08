@@ -55,12 +55,12 @@ function App() {
           fetch('/api/SampleFunc')
           .then((response) => {
             console.log(response);
-              response.json()
-            .then(data => {
+            response.json()
+            .then((data) => {
               console.log(data);
-              setApiData(data)
-            })
-        });
+              setApiData(data);
+            });
+          });
           
         } catch (error) {
           //quietly log this error. we want app to continue to function
@@ -69,7 +69,7 @@ function App() {
         }
 
 
-      })
+      
       // .catch(err => {
       //   console.log(err);
       // });
