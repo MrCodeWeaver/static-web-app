@@ -22,6 +22,7 @@ namespace static_web_app
         }
 
         IConfiguration Configuration { get; set; }
+        //ILogger Logger {get; set;}
 
         public override void Configure(IFunctionsHostBuilder builder)
         {
@@ -41,11 +42,11 @@ namespace static_web_app
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .Build();
             
-            var _logger = builder.Services.BuildServiceProvider().GetService<ILogger>();
+           // var _logger = builder.Services.BuildServiceProvider().GetService<ILogger>();
 
 
-            _logger.LogInformation("Startup Configure");
-            _logger.LogInformation(Configuration.ToString());
+           //+ _logger.LogInformation("Startup Configure");
+            //_logger.LogInformation(Configuration["AzureAd"]);
 
             // Replace the Azure Function configuration with our new one
             builder.Services.AddSingleton(Configuration);
