@@ -6,6 +6,7 @@ using Microsoft.Azure.WebJobs.Host.Bindings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Logging;
 using Azure.Functions.Identity.Web.Extensions;
 
 [assembly: FunctionsStartup(typeof(static_web_app.Startup))]
@@ -15,8 +16,12 @@ namespace static_web_app
 
     public class Startup : FunctionsStartup
     {
-        public Startup()
+        private readonly ILogger<Startup> _logger;
+
+        public Startup( ILogger<Startup> logger)
         {
+            _logger = logger;
+
         }
 
         IConfiguration Configuration { get; set; }
@@ -38,6 +43,9 @@ namespace static_web_app
                 .AddConfiguration(configuration) // Add the original function configuration 
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .Build();
+            
+            _logger.LogInformation("Startup Configure");
+            _logger.LogInformation(Configuration.ToString());
 
             // Replace the Azure Function configuration with our new one
             builder.Services.AddSingleton(Configuration);
@@ -51,6 +59,9 @@ namespace static_web_app
 
         private void ConfigureServices(IServiceCollection services)
         {
+
+            _logger.LogInformation("Startup ConfigureServices");
+          //  _logger.LogInformation(_configuration["AzureAd"]);
             //services.AddAuthentication(sharedOptions =>
             //{
             //    sharedOptions.DefaultScheme = Microsoft.Identity.Web.Constants.Bearer;
