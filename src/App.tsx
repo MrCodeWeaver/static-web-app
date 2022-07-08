@@ -39,24 +39,27 @@ function App() {
 
       
 
-      let provider = Providers.globalProvider;
-      console.log('now trying to get backend token');
-      provider.getAccessToken({ scopes: ['api://c14905f0-259c-4429-87fe-11b3fcea0168/.default'] }).then((token) => {
+     // let provider = Providers.globalProvider;
+     // console.log('now trying to get backend token');
+     // provider.getAccessToken({ scopes: ['api://c14905f0-259c-4429-87fe-11b3fcea0168/.default'] }).then((token) => {
 
-          var headers = new Headers();
-          var bearer = "Bearer " + token;
-          headers.append("Authorization", bearer);
-          var options = {
-            method: "GET",
-            headers: headers
-        };
+        //   var headers = new Headers();
+        //   var bearer = "Bearer " + token;
+        //   headers.append("Authorization", bearer);
+        //   var options = {
+        //     method: "GET",
+        //     headers: headers
+        // };
 
         try {
-          fetch('/api/SampleFunc', options)
+          fetch('/api/SampleFunc')
           .then((response) => {
             console.log(response);
               response.json()
-            .then(data => setApiData(data))
+            .then(data => {
+              console.log(data);
+              setApiData(data)
+            })
         });
           
         } catch (error) {
