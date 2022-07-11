@@ -39,11 +39,11 @@ function App() {
 
       
 
-     let provider = Providers.globalProvider;
-     console.log('now trying to get backend token');
-     provider.getAccessToken({ scopes: ['api://c14905f0-259c-4429-87fe-11b3fcea0168/.default'] }).then((token) => {
+      let provider = Providers.globalProvider;
+      console.log('now trying to get backend token');
+      provider.getAccessToken({ scopes: ['api://c14905f0-259c-4429-87fe-11b3fcea0168/.default'] }).then((token) => {
 
-          var headers = new Headers();
+           var headers = new Headers();
           var bearer = "Bearer " + token;
           headers.append("Authorization", bearer);
           var options = {
@@ -72,7 +72,7 @@ function App() {
       
       // .catch(err => {
       //   console.log(err);
-      // });
+       });
     }
 
   }, [isSignedIn]);
